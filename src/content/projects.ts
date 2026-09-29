@@ -33,15 +33,16 @@ export const featuredProjects: FeaturedProject[] = [
     tagline:
       "The operating system for an electrical contracting business: estimates, AI takeoffs, invoicing, payments.",
     tags: "SaaS · Web + iOS + Android · In production",
-    cover: screen(
-      "/work/aiproconstruct/site-home.webp",
-      "AiProConstruct home page with a customer-approved estimate",
-    ),
+    cover: screen("/work/aiproconstruct/estimate.webp", "An approved AiProConstruct estimate"),
     span: 8,
     tall: true,
   },
   {
     slug: "ai-takeoff",
+    cover: screen(
+      "/work/ai-takeoff/sheets.webp",
+      "AI takeoff with detected symbols on a power plan",
+    ),
     name: "AI Electrical Takeoff",
     tagline: "Reads blueprint PDFs and counts every fixture, with a person approving each count.",
     tags: "Computer vision · Gemini",

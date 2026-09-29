@@ -46,6 +46,138 @@ const phone = (src: string, alt: string, caption?: string, height = 2532): Shot 
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: "aiproconstruct",
+    facts: [
+      { label: "Role", value: "Sole developer, product owner" },
+      { label: "Timeline", value: "May 2025 – present" },
+      { label: "Stack", value: "React, TypeScript, Node, Postgres (Neon), Capacitor" },
+      { label: "Status", value: "In production, used daily" },
+    ],
+    intro:
+      "The software an electrical contracting business runs on, built from scratch for my family's company. Estimates, jobs, invoices, scheduling, inventory and AI blueprint takeoffs, on the web and on iOS and Android.",
+    hero: desktop(
+      "/work/aiproconstruct/estimate.webp",
+      "An approved AiProConstruct estimate with labor, material, tax and total",
+      "A real customer-approved estimate. The customer's name is blurred.",
+    ),
+    problem:
+      "Estimates were written up in spreadsheets, one line at a time, before a customer ever saw a PDF. Jobs, invoices and the books lived in separate places. The business needed one system that turns a description of the work into a price, gets it approved, and follows the job through to payment.",
+    numbers: [
+      { value: "384", label: "estimates written in the app" },
+      { value: "75", label: "jobs tracked, 44 completed" },
+      { value: "Web + iOS + Android", label: "one codebase via Capacitor" },
+    ],
+    built: [
+      {
+        title: "Task-based estimating",
+        body: "Describe the task and AI drafts the materials and labor. Then a person reviews it, adjusts it and sends it. Customers approve online, and an approved estimate converts to a job in one step.",
+      },
+      {
+        title: "The rest of the business",
+        body: "Jobs, invoicing, time tracking, a calendar, contacts, permits and licenses, and inventory across service vans and the warehouse.",
+      },
+      {
+        title: "Payments and accounting",
+        body: "Job invoices customers pay online through Stripe Connect, milestone billing such as deposits, and a QuickBooks integration for the books.",
+      },
+      {
+        title: "Mobile",
+        body: "iOS and Android apps from the same code, with camera, push notifications, offline awareness and field photos.",
+      },
+      {
+        title: "Open to AI assistants",
+        body: "A Model Context Protocol server lets AI assistants read and work with estimates, jobs, contacts and takeoffs, through the same permissions as the app.",
+      },
+    ],
+    security: [
+      {
+        title: "OAuth for AI access",
+        body: "The MCP server uses standard OAuth discovery and dynamic client registration, so an assistant gets its own scoped authorization. No shared keys are pasted into prompts.",
+      },
+      {
+        title: "Secrets stay on the server",
+        body: "Payment, accounting and AI keys never reach the browser or the mobile apps.",
+      },
+      {
+        title: "Safe database changes",
+        body: "Every schema change is a named migration, approved before it runs, and production is snapshotted first so any change can be rolled back.",
+      },
+      {
+        title: "Nothing ships unreviewed",
+        body: "Every change is reviewed by someone other than its author and must pass its build check. Payments, OAuth and webhooks are tested on a staging deployment before production.",
+      },
+    ],
+    gallery: [
+      desktop(
+        "/work/aiproconstruct/site-home.webp",
+        "AiProConstruct public home page",
+        "The public site, with a real job: a one-task bathroom fan replacement, approved at $506.99.",
+      ),
+      desktop("/work/aiproconstruct/site-pricing.webp", "AiProConstruct pricing page"),
+    ],
+    note: "Customer names are blurred in app screenshots.",
+    links: [{ label: "aiproconstruct.com", href: "https://aiproconstruct.com" }],
+  },
+  {
+    slug: "ai-takeoff",
+    facts: [
+      { label: "Role", value: "Design and development" },
+      { label: "Timeline", value: "2026, part of AiProConstruct" },
+      { label: "Stack", value: "TypeScript, Node, Gemini vision, OpenCV (WASM)" },
+      { label: "Status", value: "In production, early access" },
+    ],
+    intro:
+      "Upload an electrical plan set and get every fixture, receptacle and panel counted, grouped into scopes, priced and turned into a bid. A person reviews every count.",
+    hero: desktop(
+      "/work/ai-takeoff/sheets.webp",
+      "A takeoff in progress: detected symbols marked on the power plan, with counts by type",
+      "An 87-page commercial plan set with 503 detections waiting for review. The project name is blurred.",
+    ),
+    problem:
+      "A takeoff means counting every symbol on every sheet of a plan set, often dozens or hundreds of pages, before you can price the job. It's slow, and a missed fixture comes out of the contractor's margin. AI can do the counting, but only if a person can see and trust what it found.",
+    built: [
+      {
+        title: "Several detectors, not one",
+        body: "Detections combine AI vision, the plan's own labels, legends and schedules, and a rule-based pass. An in-process OpenCV template-matching pass, off by default while it's tuned, targets drawn symbols that have no tag to read.",
+      },
+      {
+        title: "Review built in",
+        body: "Every detection is accepted or rejected. You can accept everything above 70% confidence at once, then place, move or measure anything by hand.",
+      },
+      {
+        title: "From counts to a bid",
+        body: "A nine-step workspace takes the job from setup and RFIs, through sheets, packages and numbers, to the bid, alternates, clarifications and proposal. Counted items become priced scopes and a sell price.",
+      },
+      {
+        title: "Honest about what's AI",
+        body: "Any figure the model produced is labelled AI and can be regenerated. The moment you type over it, it's yours and is never overwritten.",
+      },
+    ],
+    security: [
+      {
+        title: "Plans stay private",
+        body: "Plan files are served only to signed-in members of the team that owns the project, checked on every request.",
+      },
+      {
+        title: "No silent changes",
+        body: "AI suggestions stay suggestions until accepted, and human edits are never regenerated away.",
+      },
+    ],
+    gallery: [
+      desktop(
+        "/work/ai-takeoff/packages.webp",
+        "Packages: counted items grouped into scopes waiting for a pricing decision",
+        "Counts grouped into scope packages: lighting, gear and distribution, branch rough.",
+      ),
+      desktop(
+        "/work/ai-takeoff/bid.webp",
+        "Bid: direct material and markup rolled into a sell price",
+        "The same takeoff rolled into a sell price.",
+      ),
+    ],
+    note: "Captured from a real commercial project. The project name is blurred.",
+  },
+  {
     slug: "the-assembly",
     facts: [
       { label: "Role", value: "Sole developer, client team" },
