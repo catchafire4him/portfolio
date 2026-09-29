@@ -47,7 +47,7 @@ export function Hero() {
             <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
           <Link
-            href="/#colophon"
+            href="/colophon"
             className="border-line-strong hover:border-subtle flex h-[52px] items-center justify-center gap-2.5 rounded-full border px-6 transition-colors duration-300"
           >
             <Lock className="size-4" />

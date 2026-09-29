@@ -107,6 +107,9 @@ export function SecuritySection() {
           <p className="text-muted leading-relaxed">
             Every header, check and decision on this site is documented, and the source is public.
           </p>
+          <Link href="/colophon" className="link-u text-accent self-start">
+            Read the colophon →
+          </Link>
         </div>
         <ul className="grid flex-1 gap-3 sm:grid-cols-2">
           {securityPractices.map((practice) => (

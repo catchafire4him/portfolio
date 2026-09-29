@@ -12,9 +12,9 @@ and findings that need a compromised device or browser.
 ## What this site does
 
 - **Content Security Policy** with a fresh nonce per request and `'strict-dynamic'`
-  ([src/proxy.ts](src/proxy.ts)). No `'unsafe-inline'` scripts. Inline style _attributes_
+  ([src/lib/security.ts](src/lib/security.ts), applied in [src/proxy.ts](src/proxy.ts)). No `'unsafe-inline'` scripts. Inline style _attributes_
   are allowed for per-element values like animation delays; they cannot run script.
-- **Transport and browser headers** ([next.config.ts](next.config.ts)): HSTS with preload,
+- **Transport and browser headers** (defined in [src/lib/security.ts](src/lib/security.ts), sent by [next.config.ts](next.config.ts)): HSTS with preload,
   `nosniff`, `frame-ancestors 'none'` plus `X-Frame-Options: DENY`, a strict referrer policy,
   a Permissions-Policy that turns off camera, mic, location and similar APIs, and
   same-origin COOP/CORP.

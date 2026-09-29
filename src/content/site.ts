@@ -1,6 +1,7 @@
 export const site = {
   name: "Aaron Tingler",
   initials: "AT",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://aarontingler.vercel.app",
   title: "Aaron Tingler — Software Developer",
   description:
     "Custom web apps, AI features and mobile apps for small businesses. Designed, built, secured and deployed by one developer.",

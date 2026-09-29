@@ -14,7 +14,18 @@ function findProject(slug: string) {
 
 export async function generateMetadata({ params }: PageProps<"/work/[slug]">): Promise<Metadata> {
   const project = findProject((await params).slug);
-  return project ? { title: project.name, description: project.tagline } : {};
+  if (!project) return {};
+  return {
+    title: project.name,
+    description: project.tagline,
+    alternates: { canonical: `/work/${project.slug}` },
+    openGraph: {
+      type: "article",
+      url: `/work/${project.slug}`,
+      title: `${project.name} · Case study`,
+      description: project.tagline,
+    },
+  };
 }
 
 function Label({ children }: { children: React.ReactNode }) {

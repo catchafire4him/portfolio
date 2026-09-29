@@ -8,7 +8,7 @@ import { site } from "@/content/site";
 const links = [
   { href: "/#work", label: "Work" },
   { href: "/#services", label: "Services" },
-  { href: "/#colophon", label: "How it's built" },
+  { href: "/colophon", label: "How it's built" },
 ];
 
 /** Frosted header that hides while scrolling down and returns on scroll up. */
