@@ -305,6 +305,10 @@ export const caseStudies: CaseStudy[] = [
       phone("/work/chaos-games/phone-verdict.webp", "Phone view: vote guilty or innocent"),
     ],
     note: "Captured from a real game on the live deployment, with four test players.",
+    links: [
+      { label: "Source on GitHub", href: "https://github.com/catchafire4him/chaosgames" },
+      { label: "Play it", href: "https://chaosgames-production.up.railway.app" },
+    ],
   },
   {
     slug: "geminiflow",
@@ -380,6 +384,13 @@ export const caseStudies: CaseStudy[] = [
         height: 781,
         frame: "window",
         caption: "Real session timings from the diagnostics log.",
+      },
+    ],
+    links: [
+      { label: "Source on GitHub", href: "https://github.com/catchafire4him/GeminiFlow" },
+      {
+        label: "Read the measured design notes (PLAN.md)",
+        href: "https://github.com/catchafire4him/GeminiFlow/blob/master/PLAN.md",
       },
     ],
   },
