@@ -20,6 +20,10 @@ and findings that need a compromised device or browser.
   same-origin COOP/CORP.
 - **Analytics** (PostHog) loads only when configured, sends through this site's own `/ingest`
   path, stores nothing in cookies or localStorage, and has session recording off.
+- **Contact form** ([src/app/api/contact/route.ts](src/app/api/contact/route.ts)): same-origin
+  and content-type checks, a shared zod schema (length limits, no control characters in
+  single-line fields), a 16 KB body cap, a per-IP rate limit, a honeypot and a minimum fill time.
+  Sends plain-text email via Resend. Stores nothing and never logs the message.
 - **No third-party scripts, fonts or embeds.** Fonts are self-hosted at build time.
 - **CI** runs lint, type checks, a production build, `npm audit`, gitleaks secret scanning
   and CodeQL on every push and pull request. Dependabot keeps dependencies and Actions current.

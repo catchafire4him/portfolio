@@ -4,6 +4,7 @@ import { securityPractices, services, site } from "@/content/site";
 import { Reveal } from "@/components/motion/Reveal";
 import { Check } from "@/components/ui/icons";
 import { ProjectCard } from "./ProjectCard";
+import { ContactForm } from "./ContactForm";
 import { ProjectCover } from "./ProjectCover";
 
 function Eyebrow({ index, children }: { index: string; children: React.ReactNode }) {
@@ -140,23 +141,21 @@ export function ContactSection() {
         <p className="text-muted max-w-[560px] text-lg leading-relaxed">
           Tell me what you&apos;re working on. You&apos;ll hear back within one business day.
         </p>
-        <div className="flex flex-col gap-3.5 sm:flex-row">
+        <div className="mt-4 w-full max-w-[760px]">
+          <ContactForm email={site.email} />
+        </div>
+        <p className="text-subtle text-sm">
+          Prefer email?{" "}
           {site.email ? (
-            <a
-              href={`mailto:${site.email}`}
-              className="bg-accent text-accent-ink flex h-14 items-center justify-center rounded-full px-[30px] font-semibold transition-transform duration-300 hover:scale-[1.03]"
-            >
-              Start a project
+            <a href={`mailto:${site.email}`} className="link-u text-fg">
+              {site.email}
             </a>
           ) : null}
-          <Link
-            href={site.github}
-            rel="noopener noreferrer"
-            className="border-line-strong hover:border-subtle flex h-14 items-center justify-center rounded-full border px-7 transition-colors duration-300"
-          >
+          {site.email ? " · " : null}
+          <Link href={site.github} rel="noopener noreferrer" className="link-u text-fg">
             GitHub
           </Link>
-        </div>
+        </p>
       </Reveal>
     </section>
   );

@@ -50,8 +50,8 @@ const tradeoffs = [
     body: "The header carries the preload directive, but the list only accepts registrable domains. This site is on a vercel.app subdomain until it has its own domain.",
   },
   {
-    title: "No contact form (yet)",
-    body: "Contact is a plain email link for now. A form means a server endpoint to defend. When it arrives it will get validation, a bot check and rate limiting.",
+    title: "A simple rate limit",
+    body: "The contact form's rate limit lives in the server function's memory. It stops one client from hammering the form, but resets on cold starts and isn't shared between instances. A firewall-level limit is the next step.",
   },
 ];
 
@@ -200,7 +200,26 @@ export default async function ColophonPage() {
         </Reveal>
 
         <Reveal as="section" className="grid gap-8 lg:grid-cols-12">
-          <Heading index="05">On every push</Heading>
+          <Heading index="05">Contact form</Heading>
+          <ul className="flex flex-col gap-3 lg:col-span-8">
+            {[
+              "The form posts JSON to one route. Requests from any other origin, or with another content type, are refused before anything is read.",
+              "The same validation schema runs in the browser and on the server. The server's check is the one that counts: length limits on every field, a real email address, a fixed list of project types, and no control characters in single-line fields, so nobody can inject email headers.",
+              "Bodies over 16 KB are rejected. Each IP gets five attempts per ten minutes.",
+              "A hidden honeypot field and a minimum fill time catch simple bots. They get a normal-looking success, so they learn nothing, and nothing is sent.",
+              "The message goes out as plain-text email through Resend's API, called with fetch (no SDK). Nothing is stored on this site, and the visitor's message is never written to the logs.",
+              "No CAPTCHA and no third-party bot-detection script. That would mean fingerprinting every visitor for a form most of them never touch.",
+            ].map((line) => (
+              <li key={line} className="flex gap-3">
+                <Check className="text-accent mt-1 size-4 shrink-0" />
+                <span className="text-muted leading-relaxed">{line}</span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal as="section" className="grid gap-8 lg:grid-cols-12">
+          <Heading index="06">On every push</Heading>
           <div className="grid gap-3 sm:grid-cols-2 lg:col-span-8">
             {ci.map((c) => (
               <div key={c.step} className="bg-surface flex flex-col gap-1.5 rounded-xl p-5">
@@ -212,7 +231,7 @@ export default async function ColophonPage() {
         </Reveal>
 
         <Reveal as="section" className="grid gap-8 lg:grid-cols-12">
-          <Heading index="06">Tradeoffs</Heading>
+          <Heading index="07">Tradeoffs</Heading>
           <div className="grid gap-4 sm:grid-cols-2 lg:col-span-8">
             {tradeoffs.map((t) => (
               <div key={t.title} className="border-line flex flex-col gap-2 rounded-2xl border p-6">
@@ -224,7 +243,7 @@ export default async function ColophonPage() {
         </Reveal>
 
         <Reveal as="section" className="grid gap-8 lg:grid-cols-12">
-          <Heading index="07">Screenshots</Heading>
+          <Heading index="08">Screenshots</Heading>
           <p className="text-muted text-lg leading-relaxed lg:col-span-8">
             Every screenshot in the case studies is a real capture of the running product. Where it
             shows a customer, a client or someone&apos;s personal data, that part is blurred. It is
@@ -233,7 +252,7 @@ export default async function ColophonPage() {
         </Reveal>
 
         <Reveal as="section" className="grid gap-8 lg:grid-cols-12">
-          <Heading index="08">Check it yourself</Heading>
+          <Heading index="09">Check it yourself</Heading>
           <div className="flex flex-col gap-5 lg:col-span-8">
             <pre className="bg-surface-2 overflow-x-auto rounded-xl p-5 font-mono text-sm">
               <code>curl -sI {SITE}</code>
