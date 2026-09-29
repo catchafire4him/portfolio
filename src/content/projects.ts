@@ -68,7 +68,7 @@ export const featuredProjects: FeaturedProject[] = [
     name: "GeminiFlow",
     tagline: "Hold a key, speak, and your words appear in any app on your computer.",
     tags: "Rust · Tauri · Windows",
-    cover: screen("/work/geminiflow/dictation.webp", "GeminiFlow dictation history", 1174, 491),
+    cover: screen("/work/geminiflow/dictation.webp", "GeminiFlow dictation history", 1163, 778),
     span: 4,
   },
   {

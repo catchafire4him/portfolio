@@ -186,11 +186,12 @@ export const caseStudies: CaseStudy[] = [
       "A Windows tray app for talking instead of typing. Hold a key, speak, let go, and the text lands in whatever app you were in.",
     hero: {
       src: "/work/geminiflow/dictation.webp",
-      alt: "GeminiFlow dictation history showing messages dictated for this portfolio",
-      width: 1174,
-      height: 491,
+      alt: "GeminiFlow dictation history with the time each transcription took",
+      width: 1163,
+      height: 778,
       frame: "window",
-      caption: "Real history: these are the messages I dictated while planning this site.",
+      caption:
+        "Real history. Each entry shows the app it was typed into and how long it took: 341 to 567 ms here.",
     },
     problem:
       "Dictation is only worth using if it's faster than typing and never puts text in the wrong place. That comes down to a few hundred milliseconds and a lot of Windows edge cases: global hotkeys, focus, the clipboard, and apps running as administrator.",
