@@ -4,7 +4,7 @@ import { securityPractices, services, site } from "@/content/site";
 import { Reveal } from "@/components/motion/Reveal";
 import { Check } from "@/components/ui/icons";
 import { ProjectCard } from "./ProjectCard";
-import { ProjectVisual } from "./ProjectVisual";
+import { ProjectCover } from "./ProjectCover";
 
 function Eyebrow({ index, children }: { index: string; children: React.ReactNode }) {
   return (
@@ -43,7 +43,7 @@ export function WorkSection() {
             className={`col-span-12 grid ${spanClass[project.span]}`}
           >
             <ProjectCard project={project}>
-              <ProjectVisual kind={project.visual} />
+              <ProjectCover project={project} />
             </ProjectCard>
           </Reveal>
         ))}

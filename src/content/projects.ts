@@ -1,16 +1,30 @@
-export type ProjectVisual =
-  "aiproconstruct" | "takeoff" | "dayrecall" | "geminiflow" | "chaos" | "assembly";
+export type Cover = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  frame: "screen" | "phone";
+};
 
 export type FeaturedProject = {
   slug: string;
   name: string;
   tagline: string;
   tags: string;
-  visual: ProjectVisual;
   /** Column span in the 12-column bento grid on large screens. */
   span: 4 | 5 | 7 | 8;
   tall?: boolean;
+  /** A real screenshot. Projects without one show a plain pattern, never mock data. */
+  cover?: Cover;
 };
+
+const screen = (src: string, alt: string, width = 2400, height = 1500): Cover => ({
+  src,
+  alt,
+  width,
+  height,
+  frame: "screen",
+});
 
 export const featuredProjects: FeaturedProject[] = [
   {
@@ -19,7 +33,10 @@ export const featuredProjects: FeaturedProject[] = [
     tagline:
       "The operating system for an electrical contracting business: estimates, AI takeoffs, invoicing, payments.",
     tags: "SaaS · Web + iOS + Android · In production",
-    visual: "aiproconstruct",
+    cover: screen(
+      "/work/aiproconstruct/site-home.webp",
+      "AiProConstruct home page with a customer-approved estimate",
+    ),
     span: 8,
     tall: true,
   },
@@ -28,7 +45,6 @@ export const featuredProjects: FeaturedProject[] = [
     name: "AI Electrical Takeoff",
     tagline: "Reads blueprint PDFs and counts every fixture, with a person approving each count.",
     tags: "Computer vision · Gemini",
-    visual: "takeoff",
     span: 4,
     tall: true,
   },
@@ -38,7 +54,13 @@ export const featuredProjects: FeaturedProject[] = [
     tagline:
       "An all-day memory on a smartwatch, encrypted on the phone with a hardware-backed key.",
     tags: "Kotlin · Wear OS · AES-GCM",
-    visual: "dayrecall",
+    cover: {
+      src: "/work/dayrecall/today.webp",
+      alt: "DayRecall Today screen",
+      width: 1080,
+      height: 2230,
+      frame: "phone",
+    },
     span: 4,
   },
   {
@@ -46,7 +68,7 @@ export const featuredProjects: FeaturedProject[] = [
     name: "GeminiFlow",
     tagline: "Hold a key, speak, and your words appear in any app on your computer.",
     tags: "Rust · Tauri · Windows",
-    visual: "geminiflow",
+    cover: screen("/work/geminiflow/dictation.webp", "GeminiFlow dictation history", 1174, 491),
     span: 4,
   },
   {
@@ -55,7 +77,7 @@ export const featuredProjects: FeaturedProject[] = [
     tagline:
       "A party game on your TV with an AI host that narrates out loud. Players join by phone.",
     tags: "Real-time · WebSockets · AI voice",
-    visual: "chaos",
+    cover: screen("/work/chaos-games/crime.webp", "Chaos Games: the AI host opens a Whodunnit"),
     span: 4,
   },
   {
@@ -64,7 +86,7 @@ export const featuredProjects: FeaturedProject[] = [
     tagline:
       "A private member platform for health-industry leaders: applications, payments, a member directory and events.",
     tags: "Client work · Supabase · Stripe",
-    visual: "assembly",
+    cover: screen("/work/the-assembly/home.webp", "The Assembly home page"),
     span: 7,
   },
 ];

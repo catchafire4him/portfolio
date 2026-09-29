@@ -19,7 +19,7 @@ export function ProjectCard({ project, children }: Props) {
     el.style.setProperty("--my", `${event.clientY - rect.top}px`);
   }
 
-  const wide = project.visual === "assembly";
+  const wide = project.slug === "the-assembly";
 
   return (
     <Link
