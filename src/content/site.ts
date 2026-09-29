@@ -42,7 +42,7 @@ export const services = [
 
 export const securityPractices = [
   { label: "Strict Content Security Policy", tag: "CSP" },
-  { label: "HTTPS only, HSTS preloaded", tag: "HSTS" },
+  { label: "HTTPS only, enforced with HSTS", tag: "HSTS" },
   { label: "Cookieless, first-party analytics", tag: "POSTHOG" },
   { label: "Secret scanning on every push", tag: "CI" },
   { label: "Dependencies audited automatically", tag: "CI" },
