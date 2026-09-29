@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# keep the template
+!.env.example
+
+# private notes (client-sensitive; never commit)
+docs/private/
+
+# local tooling
+.claude/

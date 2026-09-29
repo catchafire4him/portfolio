@@ -1,0 +1,4 @@
+Contact: https://github.com/catchafire4him/portfolio/security/advisories/new
+Expires: 2027-09-29T00:00:00.000Z
+Preferred-Languages: en
+Policy: https://github.com/catchafire4him/portfolio/blob/main/SECURITY.md

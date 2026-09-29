@@ -1,26 +1,207 @@
 @import "tailwindcss";
 
+/* Design tokens. Dark-first; one accent. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0b0b0c;
+  --surface: #121214;
+  --surface-2: #18181b;
+  --line: #1f1f24;
+  --line-strong: #2a2a30;
+  --fg: #ededec;
+  --muted: #a1a1a8;
+  --subtle: #8a8a91;
+  --accent: #d4ff3f;
+  --accent-ink: #0b0b0c;
+  --ok: #4ade80;
+  --rec: #f87171;
+  --blueprint: #0e1622;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-ok: var(--ok);
+  --color-rec: var(--rec);
+  --color-blueprint: var(--blueprint);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument-serif);
+  --ease-out-soft: var(--ease-out);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Hero background grid, slowly drifting. */
+.bg-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  animation: grid-drift 14s linear infinite;
+  mask-image: radial-gradient(ellipse at 30% 30%, black 40%, transparent 80%);
+}
+
+.bg-blueprint {
+  background-color: var(--blueprint);
+  background-image:
+    linear-gradient(rgb(120 160 220 / 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(120 160 220 / 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Animated underline for text links. */
+.link-u {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition:
+    background-size 0.35s var(--ease-out),
+    color 0.2s;
+}
+.link-u:hover {
+  background-size: 100% 1px;
+}
+
+/* Cursor spotlight on project cards; --mx/--my are set from JS. */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    360px circle at var(--mx, 50%) var(--my, 50%),
+    rgb(212 255 63 / 0.45),
+    transparent 60%
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  z-index: 1;
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+.wave-bar {
+  animation: wave 0.9s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+.pulse-dot {
+  animation: pulse 2s infinite;
+}
+
+.blink {
+  animation: blink 1.4s infinite;
+}
+
+@keyframes grid-drift {
+  to {
+    background-position: 64px 64px;
+  }
+}
+@keyframes wave {
+  from {
+    transform: scaleY(0.35);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(74 222 128 / 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgb(74 222 128 / 0);
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hero entrance: plays on first paint, no JavaScript needed. */
+.rise {
+  animation: rise 0.9s var(--ease-out) both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+/* Scroll reveal: CSS scroll-driven animation where supported; otherwise static. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry var(--reveal-offset, 0%) entry calc(var(--reveal-offset, 0%) + 45%);
+    }
+  }
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
 }
