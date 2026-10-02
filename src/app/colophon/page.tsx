@@ -99,7 +99,7 @@ export default async function ColophonPage() {
           className="rise text-5xl leading-[0.95] font-semibold tracking-[-0.045em] md:text-[88px]"
           style={{ animationDelay: "0.08s" }}
         >
-          How this site is <span className="text-accent font-serif font-normal italic">built.</span>
+          How this site is <span className="text-accent">built.</span>
         </h1>
         <p className="rise text-muted text-xl leading-snug" style={{ animationDelay: "0.16s" }}>
           Everything below is rendered from the same code that serves the site. The headers, the
@@ -124,8 +124,8 @@ export default async function ColophonPage() {
             </dl>
             <p className="text-muted leading-relaxed">
               {deps.length} runtime dependencies in total: <Code>{deps.join(", ")}</Code>. Fonts
-              (Geist, Geist Mono, Instrument Serif) are downloaded at build time and served from
-              this domain. There are no third-party scripts, fonts or embeds.
+              (Geist and Geist Mono) are downloaded at build time and served from this domain. There
+              are no third-party scripts, fonts or embeds.
             </p>
           </div>
         </Reveal>

@@ -14,9 +14,6 @@ export function Footer() {
           <a className="link-u hover:text-fg" href="/colophon">
             Colophon
           </a>
-          <a className="link-u hover:text-fg" href="/.well-known/security.txt">
-            security.txt
-          </a>
         </nav>
       </div>
     </footer>

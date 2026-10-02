@@ -153,7 +153,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           ) : null}
 
           <Reveal as="section" className="grid gap-6 lg:grid-cols-12">
-            <Label>Security &amp; privacy</Label>
+            <Label>Under the hood</Label>
             <SectionList items={study.security} icon />
           </Reveal>
 

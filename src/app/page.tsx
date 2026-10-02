@@ -1,8 +1,8 @@
 import { Hero } from "@/components/home/Hero";
 import {
   ContactSection,
-  SecuritySection,
   ServicesSection,
+  StrengthsSection,
   WorkSection,
 } from "@/components/home/Sections";
 
@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
       <WorkSection />
       <ServicesSection />
-      <SecuritySection />
+      <StrengthsSection />
       <ContactSection />
     </>
   );
